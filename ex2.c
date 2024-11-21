@@ -67,7 +67,7 @@ int main() {
 				{printf("%c",mouth);} // Print the mouth character
 				printf("/\n"); // End of the mouth, with a forward slash to close the shape
 			}
-				break;
+			break;
 
 			// Case 2: determine whether the sum of all digits to the left of the middle digit(s)
 			// and the sum of all digits to the right of the middle digit(s) are equal
@@ -77,7 +77,60 @@ int main() {
 			Please notice: the number has to be bigger than 0.
 			*/
 			case 2:
-				printf("2\n");
+				int number;
+				// Ask the user to enter a number
+				printf("Enter a number:\n");
+				scanf(" %d", &number);
+
+				// Check if the number is positive. If not, ask again.
+				while (number<=0) {
+					printf("Only positive number is allowed, please try again:\n");
+					scanf("%d", &number);
+				}
+
+				// Create a copy of the original number to use for processing
+				int number1 = number;
+				int counter = 0;
+
+				// Count the number of digits in the number
+				while (number1!=0){
+					counter++; // Increase the counter for each digit
+					number1 = number1/10; // Remove the last digit by dividing by 10
+					}
+
+				// Divide the digit count by 2 to split the number into two halves
+				counter =counter/2;
+
+				// Calculate the power of 10 to divide the number in half (10^counter)
+				int power = 1;
+				for (int i =0; i<counter; i++) {
+					power*=10; // Multiply power by 10 for each digit in the first half
+
+				}
+
+				// Split the number into the first and last parts
+				int first = number/power; // Get the first half by dividing by power
+				int last = number%power; // Get the last half by using the modulus operator
+
+				// Initialize sums for the first and last parts
+				int sum_first = 0;
+				int sum_last = 0;
+
+				// Calculate the sum of digits
+				for (int i =0;i<counter;i++) {
+					sum_first += first%10; // Add the last digit of 'first' to sum_first
+					first = first/10; // Remove the last digit from 'first'
+					sum_last += last%10; // Add the last digit of 'last' to sum_last
+					last = last/10; // Remove the last digit from 'last'
+				}
+
+				// Check if the sums of the two halves are equal
+				if(sum_first == sum_last) {
+					printf("This number is balanced and brings harmony!\n");
+				}
+				else {
+					printf("This number isn't balanced and destroys harmony!\n");
+				}
 				break;
 
 			// Case 3: determine whether the sum of the proper divisors (od an integer) is greater than the number itself
