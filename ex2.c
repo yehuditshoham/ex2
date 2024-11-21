@@ -7,6 +7,16 @@ Assignment: ex2
 #include <stdio.h>
 
 int main() {
+	//menu
+	printf("Choose an option:\n");
+	printf("\t1. Happy Face:\n");
+	printf("\t2. Balanced Number\n");
+	printf("\t3. Generous Number\n");
+	printf("\t4. Circle Of Joy\n");
+	printf("\t5. Happy Numbers\n");
+	printf("\t6. Festival Of Laughter\n");
+	printf("\t7. Exit\n");
+
 	// Case 1: Draw Happy Face with given symbols for eyes, nose and mouse
 	/* Example:
 	* n = 3:
