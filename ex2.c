@@ -8,6 +8,7 @@ Assignment: ex2
 
 int main() {
 	int option;
+	int userNumber;
 	do {
 		//menu
 		printf("Choose an option:\n");
@@ -77,19 +78,18 @@ int main() {
 			Please notice: the number has to be bigger than 0.
 			*/
 			case 2:
-				int number;
 				// Ask the user to enter a number
 				printf("Enter a number:\n");
-				scanf(" %d", &number);
+				scanf(" %d", &userNumber);
 
 				// Check if the number is positive. If not, ask again.
-				while (number<=0) {
+				while (userNumber<=0) {
 					printf("Only positive number is allowed, please try again:\n");
-					scanf("%d", &number);
+					scanf("%d", &userNumber);
 				}
 
 				// Create a copy of the original number to use for processing
-				int number1 = number;
+				int number1 = userNumber;
 				int counter = 0;
 
 				// Count the number of digits in the number
@@ -109,8 +109,8 @@ int main() {
 				}
 
 				// Split the number into the first and last parts
-				int first = number/power; // Get the first half by dividing by power
-				int last = number%power; // Get the last half by using the modulus operator
+				int first = userNumber/power; // Get the first half by dividing by power
+				int last = userNumber%power; // Get the last half by using the modulus operator
 
 				// Initialize sums for the first and last parts
 				int sum_first = 0;
@@ -140,7 +140,28 @@ int main() {
 			Please notice: the number has to be bigger than 0.
 			*/
 			case 3:
-				printf("3\n");
+				int userNumber;
+				// Ask the user to enter a number
+				printf("Enter a number:\n");
+				scanf(" %d", &userNumber);
+
+				while (userNumber<=0) {
+					printf("Only positive number is allowed, please try again:\n");
+					scanf("%d", &userNumber);
+				}
+
+				int sum =0;
+				for (int i = 1; i<userNumber; i++) {
+					if (userNumber%i == 0) {
+						sum += i;
+					}
+				}
+				if (sum>userNumber) {
+					printf("This number is generous!\n");
+				}
+				else {
+					printf("This number does not share.\n");
+				}
 			break;
 
 			// Case 4: determine wether a number is a prime.
@@ -150,7 +171,52 @@ int main() {
 			Please notice: the number has to be bigger than 0.
 			*/
 			case 4:
-				printf("4\n");
+			// Ask the user to enter a number
+			printf("Enter a number:\n");
+			scanf(" %d", &userNumber);
+
+			// Check if the number is positive. If not, ask again.
+			while (userNumber<=0) {
+				printf("Only positive number is allowed, please try again:\n");
+				scanf("%d", &userNumber);
+			}
+
+			int number4 = userNumber;
+			int reverse = 0;
+			int power1 = 1;
+			number4 = number4/10;
+			while (number4!=0){
+				number4 = number4/10;
+				power1 = power1*10;
+			}
+			number4 = userNumber;
+			while (number4!=0) {
+				reverse += ((number4%10)*power1);
+				power1 = power1/10;
+				number4 = number4/10;
+			}
+
+			int counter1 = 0;
+			int counter2 = 0;
+			for (int i = 1; i<userNumber; i++) {
+				if (userNumber%i == 0) {
+					counter1++;
+				}
+			}
+			for (int i = 1; i<reverse; i++) {
+				if (reverse%i == 0) {
+					counter2++;
+				}
+			}
+			if (counter1==1 && counter2==1) {
+				printf("This number completes the circle of joy!\n");
+			}
+			else {
+				printf("The circle remains incomplete.\n");
+
+			}
+
+
 			break;
 
 			// Case 5: Happy numbers: Print all the happy numbers between 1 to the given number.
@@ -161,7 +227,53 @@ int main() {
 			Please notice: the number has to be bigger than 0.
 			*/
 			case 5:
-				printf("5\n");
+				// Prompt the user to enter a number
+				printf("Enter a number:\n");
+				scanf(" %d", &userNumber);
+
+				// Check if the number is positive. If not, prompt again
+				while (userNumber<=0) {
+					printf("Only positive number is allowed, please try again:\n");
+					scanf("%d", &userNumber);
+				}
+
+				// Display the range and indicate that we will print happy numbers
+				printf("Between 1 and %d only these numbers bring happiness: ",userNumber);
+
+				int sumOfSquares =0;
+				int result =0;
+				int currentNumber;
+
+				// Loop through numbers from 1 to userNumber to check if they are happy
+				for (int i = 1; i<=userNumber; i++) {
+					currentNumber = i;
+					result = 0;
+
+					// Check the "happy" number condition by calculating the sum of squares of digits
+					while ((result!=1)&&(result!=4)) {
+						sumOfSquares = 0;
+
+						// Calculate the sum of squares of digits of the current number
+						while (currentNumber!=0) {
+							sumOfSquares += (currentNumber%10)*(currentNumber%10);
+							currentNumber = currentNumber/10;
+						}
+
+						// Assign the result of the sum of squares
+						result = sumOfSquares;
+						currentNumber = sumOfSquares; // Update currentNumber to sumOfSquares for next iteration
+					}
+
+						// If the result is 1, it is a happy number
+						if (result==1) {
+							printf(" %d",i);
+							printf(" ");
+						}
+					}
+
+					// Print a new line after the list of happy numbers
+					printf("\n");
+
 			break;
 
 			// Festival of Laughter: Prints all the numbers between 1 the given number:
